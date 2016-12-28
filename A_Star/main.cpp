@@ -1,5 +1,5 @@
-/*
-Ğ´Ò»¸öa*Ëã·¨
+ï»¿/*
+å†™ä¸€ä¸ªa*ç®—æ³•
 struct Point
 {
 int x;
@@ -12,7 +12,6 @@ List<Point> getWay();
 */
 #define  _CRT_SECURE_NO_WARNINGS
 
-
 #include <list>
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,19 +22,19 @@ List<Point> getWay();
 
 using namespace std;
 
-//¶¨ÒåÒ»¸ö¿É×ßintÖµ
+//å®šä¹‰ä¸€ä¸ªå¯èµ°intå€¼
 
 #define CANG0 0
 
 
-//¶¨Òå×ø±ê¼°Öµ
+//å®šä¹‰åæ ‡åŠå€¼
 struct Point
 {
 	int x;
 	int y;
 	int value;
 };
-//´òÓ¡×ø±ê±í
+//æ‰“å°åæ ‡è¡¨
 void PrintPointTable(Point *a, int max_x, int max_y)
 {
 	printf("-----------------------------------------\n");
@@ -58,7 +57,7 @@ void PrintPointTable(Point *a, int max_x, int max_y)
 	}
 	printf("-----------------------------------------\n");
 }
-//´ÓÂ·¾¶ÖĞ¶ÁÈ¡µØÍ¼Åä±í
+//ä»è·¯å¾„ä¸­è¯»å–åœ°å›¾é…è¡¨
 Point*getMapTableFromCSV(char*path,int*hang,int*lie)
 {
 	if (path == "")
@@ -68,10 +67,10 @@ Point*getMapTableFromCSV(char*path,int*hang,int*lie)
 	FILE*fp = fopen(path, "r");
 	if (!fp)
 	{
-		printf("¶ÁÈ¡\"%s\"ÎÄ¼şÊ§°Ü£¡", path);
+		printf("è¯»å–\"%s\"æ–‡ä»¶å¤±è´¥ï¼", path);
 		return nullptr;
 	}
-	//Ê×ÏÈ¼ÆËãÎÄ¼şµÄ´óĞ¡
+	//é¦–å…ˆè®¡ç®—æ–‡ä»¶çš„å¤§å°
 	fseek(fp, 0L, SEEK_END);
 	int filesize = ftell(fp);
 	char* buffer = (char*)malloc(filesize*sizeof(char));
@@ -93,7 +92,7 @@ Point*getMapTableFromCSV(char*path,int*hang,int*lie)
 		}
 		infoList.push_back(numlist);
 	}
-	//×îºó¼ÆËãÁĞÓĞ¶àÉÙ
+	//æœ€åè®¡ç®—åˆ—æœ‰å¤šå°‘
 	int x = infoList.size();
 	int y = 0;
 	if (x > 0)
@@ -112,7 +111,7 @@ Point*getMapTableFromCSV(char*path,int*hang,int*lie)
 	memset(tb, 0, sizeof(tb));
 
 	
-	//¸ù¾İinfolist Éú³É±í
+	//æ ¹æ®infolist ç”Ÿæˆè¡¨
 	for (int i = 0; i < x;i++)
 	{
 		list<int> x_iter = infoList.front();
@@ -130,7 +129,7 @@ Point*getMapTableFromCSV(char*path,int*hang,int*lie)
 	return tb;
 }
 
-//¸Ãµã¸Ã·½ÏòÊÇ·ñ¿ÉÓÃ
+//è¯¥ç‚¹è¯¥æ–¹å‘æ˜¯å¦å¯ç”¨
 /*
     4
 3	a   1  1->2->3->4
@@ -159,12 +158,12 @@ bool isPointDirectionEnable(Point*mapTb,Point maxnum,Point my)
 	default:
 		return false;
 	}
-	//Ê×ÏÈÅĞ¶ÏÊÇ·ñ³ö½ç
+	//é¦–å…ˆåˆ¤æ–­æ˜¯å¦å‡ºç•Œ
 	if (cur_x<0||cur_x>=maxnum.x||cur_y<0||cur_y>=maxnum.y)
 	{
 		return false;
 	}
-	//ÔÙÅĞ¶ÏÊÇ·ñ¿É×ß
+	//å†åˆ¤æ–­æ˜¯å¦å¯èµ°
 	if ((*(mapTb + cur_x*maxnum.y + cur_y)).value == CANG0)
 	{
 		return true;
@@ -172,7 +171,7 @@ bool isPointDirectionEnable(Point*mapTb,Point maxnum,Point my)
 	return false;
 }
 
-//¸ù¾İ·½Ïò»ñÈ¡ĞÂ×ø±ê
+//æ ¹æ®æ–¹å‘è·å–æ–°åæ ‡
 Point getNewPtByDirection(Point p, int dir)
 {
 	Point newPt = { p.x, p.y, 0 };
@@ -191,15 +190,30 @@ Point getNewPtByDirection(Point p, int dir)
 		newPt.x -= 1;
 		break;
 	default:
-		printf("³ö´íÁË£¬·½ÏòÓĞÎÊÌâ£¡");
+		printf("å‡ºé”™äº†ï¼Œæ–¹å‘æœ‰é—®é¢˜ï¼");
 
 	}
 	return newPt;
 }
 
-
-//»ñÈ¡µ±Ç°Î»ÖÃµÄÏÂÒ»¸ö¿É×ß·½Ïò
-int getCurrentPointNextDirection(Point*mapTb, Point maxnum, Point my,Point unPt)
+//æ˜¯å¦æ˜¯å½“å‰åˆ—è¡¨ä¸­çš„ä¸€ä¸ª
+bool isOneOfTheList(list<Point>li,Point p)
+{
+	if (li.size()<1)
+	{
+		return false;
+	}
+	for (list<Point>::iterator it=li.begin(); it != li.end();it++)
+	{
+		if (it->x==p.x&&it->y==p.y)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+//è·å–å½“å‰ä½ç½®çš„ä¸‹ä¸€ä¸ªå¯èµ°æ–¹å‘
+int getCurrentPointNextDirection(Point*mapTb, Point maxnum, Point my,list<Point>li)
 {
 	if (my.value<0||my.value>4)
 	{
@@ -210,64 +224,78 @@ int getCurrentPointNextDirection(Point*mapTb, Point maxnum, Point my,Point unPt)
 		if (isPointDirectionEnable(mapTb, maxnum, { my.x, my.y, i }))
 		{
 			Point tmp = getNewPtByDirection(my, i);
-			if (!(tmp.x==unPt.x&&tmp.y==unPt.y))
+			if (!isOneOfTheList(li,tmp))
 			{
 				return i;
 			}
+			
 		}
 	}
 	return -1;
 }
 
-
-//»ñÈ¡Â·¾¶
+//è·å–è·¯å¾„
 list<Point> getWay(Point*mapTb,Point maxnum,Point start,Point end)
 {
-	//²ÎÊıĞ£Ñé²»Ğ£ÑéÁË£¬ÓÃµÄÊ±ºò×¢Òâ
+	//å‚æ•°æ ¡éªŒä¸æ ¡éªŒäº†ï¼Œç”¨çš„æ—¶å€™æ³¨æ„
+	int state = -1;//0 æ‰¾åˆ°è·¯äº†ï¼Œ1ï¼Œæ— è·¯å¯èµ°ï¼Œ-1ï¼Œå‡ºå¼‚å¸¸äº†
 	list<Point> resultTb;
-	//Ê×ÏÈ½«Æğµã½øÕ»£¬
+	//é¦–å…ˆå°†èµ·ç‚¹è¿›æ ˆï¼Œ
 	start.value = 0;
 	Point currentPt = start;
-	bool isBack = false;
 	do 
 	{
-		//Ê×ÏÈÅĞ¶Ïµ±Ç°ÊÇ·ñÓĞÂ·¿É×ß
-		if (isBack)
-		{
-			currentPt.value += 1;
-			isBack = false;
-		}
-
-		Point unPt = { -10, -10, 0 };
+		//é¦–å…ˆåˆ¤æ–­å½“å‰æ˜¯å¦æœ‰è·¯å¯èµ°
+		Point parentPt = { -10, -10, 0 };
 		if (resultTb.size()!=0)
 		{
-			unPt = resultTb.back();
+			parentPt = resultTb.back();
 		}
-		int newdir = getCurrentPointNextDirection(mapTb, maxnum, currentPt, unPt);
-		if (newdir!=-1)//ÓĞÂ·¿É×ß
+		int newdir = getCurrentPointNextDirection(mapTb, maxnum, currentPt,resultTb);
+		if (newdir!=-1)//æœ‰è·¯å¯èµ°
 		{
-			resultTb.push_back(currentPt);//ÏÈ½«µ±Ç°Î»ÖÃÑ¹Èë¶ÓÁĞ
+			currentPt.value = newdir;
+			resultTb.push_back(currentPt);//å…ˆå°†å½“å‰ä½ç½®å‹å…¥é˜Ÿåˆ—
 			currentPt = getNewPtByDirection(currentPt,newdir);
 		}
-		else//ÎŞÂ·¿É×ß£¬·µ»Ø°É
+		else//æ— è·¯å¯èµ°ï¼Œè¿”å›å§
 		{
-			currentPt = resultTb.back();
-			resultTb.pop_back();
-			isBack = true;
+			if (resultTb.size()!=0)
+			{
+				currentPt = resultTb.back();
+				currentPt.value += 1;
+				resultTb.pop_back();
+			}
+			else
+			{
+				currentPt = { start.x, start.y, -1 };
+				state = 1;
+			}
 		}
-	} while (!((currentPt.x==end.x && currentPt.y==end.y)||(currentPt.x==start.x&&currentPt.y==start.y&&currentPt.value>=4)));
+		//åˆ¤æ–­æ˜¯å¦æ˜¯å›åˆ°åŸæ¥çš„ä½ç½®äº†
+		if (currentPt.x == start.x&&currentPt.y == start.y&&(currentPt.value >= 4||currentPt.value==-1))
+		{
+			state = 1;
+			break;
+		}
+		else if (currentPt.x==end.x&&currentPt.y==end.y)//åˆ¤æ–­æ˜¯å¦åˆ°äº†ç»ˆç‚¹
+		{
+			state = 0;
+			break;
+		}
+	} while (1);
 
-	if (currentPt.x == end.x && currentPt.y == end.y)
+	if (state==0)
 	{
-		printf("ÕÒµ½Â·ÁË£¡\n");
+		printf("æ‰¾åˆ°è·¯äº†ï¼\n");
 	}
-	else if (currentPt.x == start.x&&currentPt.y == start.y&&currentPt.value >= 4)
+	else if (state==1)
 	{
-		printf("ÎŞÂ·¿É×ß!\n");
+		printf("æ— è·¯å¯èµ°!\n");
 	}
 	else
 	{
-		printf("Ñ°Â·³öÒì³£ÁË!\n");
+		printf("å¯»è·¯å‡ºå¼‚å¸¸äº†!\n");
 	}
 	return resultTb;
 }
@@ -278,7 +306,7 @@ void main()
 	int y = 0;
 	Point* mapTb=getMapTableFromCSV("F:/cppcode/A_Star/A_Star/zuobiao.csv",&x,&y);
 	PrintPointTable(mapTb, x, y);
-	//¿ªÊ¼µ÷È¡£¬º¯Êı·µ»ØÂ·¾¶
+	//å¼€å§‹è°ƒå–ï¼Œå‡½æ•°è¿”å›è·¯å¾„
 
 	list<Point> pt = getWay(mapTb, { x, y, 0 }, { 0, 0, 0 }, {9,9,0});
 
@@ -293,9 +321,6 @@ void main()
 	}
 	
 	PrintPointTable(mapTb, x, y);
-
-
-
 
 	free(mapTb);
 	getchar();
